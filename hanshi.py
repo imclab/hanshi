@@ -95,7 +95,7 @@ class MainWindow(wx.Frame):
         d = self.buildIndex(text,pos)
         for i,e in d.items():
           print e
-          if e['pos'] == 'NN':
+          if e['pos'] == 'NNPS' or  e['pos'] == 'NNP' or e['pos'] == 'NN':
             print e['word']
             self.control.SetStyle(e['start'],e['end'], wx.TextAttr("red", "blue"))
 
