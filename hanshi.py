@@ -76,10 +76,27 @@ class MainWindow(wx.Frame):
         dialog.Destroy()
         return userProvidedFilename
 
+    def decorate(self,txt,ppos):
+        indx = 0
+        dict = {}
+        for i,t in enumerate(ppos):
+          word = t[0]
+          pos = t[1]
+          found = txt.find(word, indx)
+          if found != -1:
+            indx = found + len(word)
+            dict[i] = {'pos': pos, 'start': found, 'end':indx, 'word': word }
+          print found, word
+        return dict
+
     def tagAndDecorate(self):
         text = self.control.GetValue()
         pos = self.tagger.tag(text)
-        print pos
+        d = self.decorate(text,pos)
+        for i,e in d.items():
+          print e
+          if e['pos'] == 'NN':
+            print e['word']
 
     # Event handlers:
 
