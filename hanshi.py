@@ -18,7 +18,7 @@ class MainWindow(wx.Frame):
     def CreateInteriorWindowComponents(self):
         ''' Create "interior" window components. In this case it is just a
             simple multiline text control. '''
-        self.control = wx.TextCtrl(self, style=wx.TE_MULTILINE)
+        self.control = wx.TextCtrl(self, style=wx.TE_MULTILINE|wx.TE_RICH2)
         self.control.Bind(wx.EVT_KEY_DOWN, self.OnKeyDown)
 
     def CreateExteriorWindowComponents(self):
@@ -76,7 +76,7 @@ class MainWindow(wx.Frame):
         dialog.Destroy()
         return userProvidedFilename
 
-    def decorate(self,txt,ppos):
+    def buildIndex(self,txt,ppos):
         indx = 0
         dict = {}
         for i,t in enumerate(ppos):
@@ -92,11 +92,12 @@ class MainWindow(wx.Frame):
     def tagAndDecorate(self):
         text = self.control.GetValue()
         pos = self.tagger.tag(text)
-        d = self.decorate(text,pos)
+        d = self.buildIndex(text,pos)
         for i,e in d.items():
           print e
           if e['pos'] == 'NN':
             print e['word']
+            self.control.SetStyle(e['start'],e['end'], wx.TextAttr("red", "blue"))
 
     # Event handlers:
 
