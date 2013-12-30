@@ -8,3 +8,5 @@ a text editor that tags the part of speech as you type.
 
 * For part-of-speech tagging, we use Kyle Gorman's port of Eric Brill's rule based tagger:
   https://github.com/kylebgorman/pposttl
+
+  ![screen shot](hanshi.png "tagging nouns")
