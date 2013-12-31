@@ -93,9 +93,11 @@ class MainWindow(wx.Frame):
         text = self.control.GetValue()
         pos = self.tagger.tag(text)
         d = self.buildIndex(text,pos)
+        self.control.SetStyle(0,len(text), wx.TextAttr("black", "white"))
         for i,e in d.items():
           print e
-          if e['pos'] == 'NNPS' or  e['pos'] == 'NNP' or e['pos'] == 'NN':
+          
+          if e['pos'] in ['NNPS', 'NNP' ,'NN', "NNS", "PRP"]:
             print e['word']
             self.control.SetStyle(e['start'],e['end'], wx.TextAttr("red", "blue"))
 
