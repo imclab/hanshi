@@ -10,6 +10,10 @@ a text editor that tags the part of speech as you type.
 
 * For part-of-speech tagging, we use Kyle Gorman's port of Eric Brill's rule based tagger:
   https://github.com/kylebgorman/pposttl
+  1. git clone git@github.com:kylebgorman/pposttl.git
+  2. cd pposttl/src
+  3. sudo make install
+
 
 Highlighting nouns:
 
